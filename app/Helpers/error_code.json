@@ -1,0 +1,14 @@
+{
+  "0": "success",
+  "1000" : "error_system",
+  "422": "Validate Errors",
+  "401": "Unauthorized",
+  "403": "Forbiden",
+  "404": "Not found",
+  "500": "Error Sever",
+  "800": "User Was Lock",
+  "801": "Logout success",
+  "802": "Category lang exist",
+  "803": "Category not found",
+  "810": "Post not found"
+}

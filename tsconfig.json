@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "strict": true,
+        "experimentalDecorators": true,
+        "useDefineForClassFields": true,
+        "allowSyntheticDefaultImports": true,
+        "noImplicitAny": false,
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "types": [
+            "vite/client",
+            "node"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "resources/ts/*"
+            ]
+        }
+    },
+    "include": [
+        "resources/**/*"
+    ]
+}
