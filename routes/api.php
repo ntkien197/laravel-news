@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,5 +46,7 @@ Route::group(['middleware' => ['auth.login']],function () {
        Route::get('/detail/{id}',[CategoryController::class,'detail']);
        Route::post('/update/{id}',[CategoryController::class,'update']);
     });
+    Route::get('/comment',[CommentController::class,'getComment']);
+    Route::post('/comment',[CommentController::class,'postComment']);
 });
 

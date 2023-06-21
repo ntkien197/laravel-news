@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Comment\CommentRepository;
+use App\Repositories\Comment\CommentRepositoryInterface;
 use App\Repositories\Post\PostRepository;
 use App\Repositories\Post\PostRepositoryInterface;
 use App\Repositories\User\UserRepository;
@@ -22,6 +24,7 @@ class BaseServiceProvider extends ServiceProvider
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
         $this->app->singleton(PostRepositoryInterface::class, PostRepository::class);
         $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
+        $this->app->singleton(CommentRepositoryInterface::class, CommentRepository::class);
     }
 
     /**

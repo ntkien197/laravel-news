@@ -105,4 +105,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+    public function comment(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

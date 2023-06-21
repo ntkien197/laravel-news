@@ -12,9 +12,14 @@ class Comment extends Model
     public $timestamps =  true;
 
     protected $fillable = [
-      'user_id','content','status'
+      'user_id','content','status','post_id'
     ];
-    public function post() {
+    public function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(Post::class);
+    }
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
