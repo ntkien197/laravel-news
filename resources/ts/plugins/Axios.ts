@@ -34,10 +34,9 @@ export class ApiService {
         return Promise.reject(response.data as ApiError)
       }
     }, (error) => {
-      console.log('hong hong để show ví dụ tên đăng nhập sai đồ chẳng hạn code 801 đồ đi đó đó để hiện thị view ó')
       const newError: ApiError = {
         code: 1000,
-        errrors: [],
+        errors: [],
         message: error?.message,
         status: false,
       }
@@ -52,7 +51,7 @@ export class ApiService {
   }
 
   public get axios(): AxiosInstance {
-    const token = 'nsjdbshbshw123'
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2ODcyNDMyNTQsImV4cCI6MTY4NzI0Njg1NCwibmJmIjoxNjg3MjQzMjU0LCJqdGkiOiJaV3Q4WU9LQ2hubkFEYmRWIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.DWssQhl2yJmm-IthfL1a3TgV7wNXsUSQALVWPdSsArg'
     this._api.defaults.headers.common['Authorization'] = `Bearer ${token}`
     return this._api
   }

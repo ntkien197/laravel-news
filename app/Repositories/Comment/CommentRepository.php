@@ -3,6 +3,7 @@
 namespace App\Repositories\Comment;
 
 use App\Models\Comment;
+use App\Models\Post;
 use App\Repositories\BaseRepository;
 
 class CommentRepository extends BaseRepository implements CommentRepositoryInterface
@@ -15,10 +16,12 @@ class CommentRepository extends BaseRepository implements CommentRepositoryInter
     public function getCommentByIdPost($query,$id) {
         $item = $this->model->where('post_id',$id)
             ->with([
-                'user:id,name,email,avatar'
+                'user:id,name as username,email,avatar',
+//                'user' => function($builder) {
+//                    $builder->select('id','name as user_name')->get();
+//                },
             ])
             ->paginate($query['perpage'], ['*'], 'page', $query['page']);
-
         return [
             'data' => $item->items(),
             'paginate' => [

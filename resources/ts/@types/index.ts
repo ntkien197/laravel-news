@@ -10,7 +10,7 @@ declare global {
 
   interface ApiError {
     code: number
-    errrors: Array<any>
+    errors: Array<any>
     message: string
     status: boolean
   }

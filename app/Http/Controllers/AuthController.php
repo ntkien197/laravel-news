@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestEmail;
 use App\Models\User;
 use App\Repositories\User\UserRepository;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use mysql_xdevapi\Exception;
 
@@ -56,7 +58,8 @@ class AuthController extends Controller
                     Auth::logout();
                     return $this->responseError([], 800);
                 }
-                return $this->createNewToken($auth);
+                $data = $this->createNewToken($auth);
+                return $this->responseSuccess($data->original, 0);
             }
             return $this->responseError([], 401);
 
@@ -94,11 +97,13 @@ class AuthController extends Controller
                 'gender' => $request->gender,
                 'address' => $request->address,
             ];
+//            dd($data);
 
             $res = $this->userService->create($data);
+            Mail::to($request->email)->send(new TestEmail($data));
             return $this->responseSuccess($res,0);
         } catch (\Exception $e) {
-            return $this->responseError([], 500);
+            return $this->responseError($e->getMessage(), 500);
         }
     }
     public function logout() {
@@ -115,8 +120,8 @@ class AuthController extends Controller
     protected function createNewToken($token)
     {
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
+            'token' => $token,
+//            'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user()
         ]);

@@ -1,7 +1,7 @@
 import { ApiService } from '@/plugins/Axios'
 import { ApiEnum } from '@/utils/ApiEnum'
 
-//GỌI API LIÊN QUAN USER chung là sao chung riêng gì á
+//
 class User {
   async list() {
     try {

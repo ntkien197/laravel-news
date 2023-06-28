@@ -30,18 +30,20 @@ class CommentController extends Controller
     {
         try {
             $validate = Validator::make($request->all(),[
-
+                'post_id' => 'required',
+                'comment' => 'required|max:1000',
             ]);
             if($validate->fails()) {
                 return $this->responseError($validate->errors(),422);
             }
             $user = Auth::user();
-//        dd($user);
             $param = [
                 'post_id' => $request->post_id,
                 'content' => $request->comment,
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'parent_id' => $request->parent_id
             ];
+
             $res = $this->commentService->create($param);
             if($res) {
                 return $this->responseSuccess($res,0);

@@ -12,7 +12,7 @@ class Comment extends Model
     public $timestamps =  true;
 
     protected $fillable = [
-      'user_id','content','status','post_id'
+      'user_id','content','status','post_id','parent_id'
     ];
     public function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
